@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Register User</title>
+</head>
+<body>
+
+  <h2>Register User</h2>
+  <button onclick="registerUser()">Register</button>
+
+  <script>
+    function registerUser() {
+      const apiUrl = "http://69.10.50.146:1980/api/campaign/GetCampaignByBuyer/?BuyerId=81";
+
+      const requestBody = {
+  "UserId": 7,
+  "OTP": "12345",
+  "OTPType": "Email"
+};
+
+      fetch(apiUrl, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify()
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("HTTP error " + response.status);
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log("Success:", data);
+        alert("Registration Successful! Check console for response.");
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        alert("Registration Failed! Check console for error.");
+      });
+    }
+  </script>
+
+</body>
+</html>
